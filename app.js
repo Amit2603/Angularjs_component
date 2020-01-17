@@ -1,17 +1,20 @@
-angular.module('app', ['ui.router', 'oc.lazyLoad'])
-    .config(function( $stateProvider) {
-console.log('hello');
+angular.module('app',['ui.router'])
+    .config(function( $stateProvider,$urlRouterProvider) {
+        $urlRouterProvider.otherwise('/component2/component2.html');  
 
         $stateProvider
-        .state('component1',{
-            url: '/component1',
-            template:"<component-one></component-one>" 
+        .state('componentOne',{
+            url: '/component2/',
+            template:"<component-one></component-one>" ,
+            templateUrl : "component1/component1.html"
+
+})
             
-            })
-            
-            .state('component2',{
-                url: '/component2',
-                template:"<component-two></component-two>" 
-                
+            .state('componentTwo',{
+                url: '/Jain',
+                template:"<component-two></component-two>" ,
+                templateUrl : "component2/component2.html"
+
                 });
+                
         });
