@@ -7,6 +7,7 @@ angular.module('app',['ui.router'])
             url: '/component2/',
             template:"<component-one></component-one>" ,
             templateUrl : "component1/component1.html"
+            
 
 })
             

@@ -1,0 +1,43 @@
+angular.module('commonServices', ['ui.router', 'oc.lazyLoad'])
+    .config(['$stateProvider', '$ocLazyLoadProvider', function commonConfig(
+        $stateProvider, $ocLazyLoadProvider) {
+        var baseURL = '../iamselfservice/admin/';
+
+        $ocLazyLoadProvider.config({
+            'modules': [{ // Set modules initially
+                name: 'commonConfigLoader', // State1 module
+                files: [
+                   // baseURL + 'dist/vendorCSS-bundle.css',
+                    baseURL + 'dist/common-bundle.css',
+                    baseURL + 'dist/vendor-bundle.js',
+                    baseURL + 'dist/common-bundle.js',
+                ]
+            }]
+        });
+
+        // Define the routes
+        $stateProvider.state({
+            name: 'configuration',
+            url: '/configuration',
+            template: "<div><toaster-container toaster-options=\"{'time-out': 5000, 'close-button': true}\"></toaster-container><config-component></config-component></div>",
+            ncyBreadcrumb: {
+                label: 'Configurations'
+            },
+            resolve: {
+                artifactController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('commonConfigLoader');
+                }]
+            },
+        }).state({
+            name: 'configurationList',
+            url: '/configurationList/:artifactClass/:id',
+            template: "<config-component></config-component>",
+            ncyBreadcrumb: {
+                label: 'List of Configurations'
+            },
+
+            resolve: {
+                artifactController: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load('commonConfigLoader')
+                }]
+            },
