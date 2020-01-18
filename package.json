@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ag-grid": "^18.1.2",
     "angular-route": "^1.5.6",
-    "angularjs": "0.0.1"
+    "angularjs": "0.0.1",
+    "chart.js": "^2.9.3",
+    "community": "0.0.1",
+    "enterprise": "0.0.3"
   }
 }
